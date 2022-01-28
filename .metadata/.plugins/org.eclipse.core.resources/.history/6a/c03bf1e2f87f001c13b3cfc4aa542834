@@ -1,0 +1,19 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<%!
+	// Declaration 내부에 1 ~ 10범위의 난수를 리턴하는 메서드
+	// int randomNumber() 를 선언해주세요.
+	int randomNumber(){
+		// 정수 1 ~ 10까지 발생시켜서 리턴하도록 로직 작성
+		return (int)Math.random() * 11;
+}
+%>
+</body>
+</html>

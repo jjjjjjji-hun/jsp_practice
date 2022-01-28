@@ -1,0 +1,35 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<%!
+	// Declaration 내부에 1 ~ 10범위의 난수를 리턴하는 메서드
+	// int randomNumber() 를 선언해주세요.
+	int randomNumber(){
+		// 정수 1 ~ 10까지 발생시켜서 리턴하도록 로직 작성
+		int result = (int)(Math.random() * 10) + 1;
+		return result;
+	}
+	String randomColor(){
+		// 33%확률로 빨강, 노랑, 파랑
+		double randomNum = (int)(Math.random() * 3);
+		String result2;
+		if(randomNum == 0){
+			result2 = "빨강";
+		}else if(randomNum == 1){
+			result2 = "노랑";
+		}else{
+			result2 = "파랑";
+		}
+		return result2;
+	}
+%>
+
+	
+</body>
+</html>

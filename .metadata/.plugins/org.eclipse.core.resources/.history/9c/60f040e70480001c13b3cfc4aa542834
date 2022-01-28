@@ -1,0 +1,28 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<%!
+	String visit(){
+	
+}
+	public int total = 0;
+	for(int i = 0; i > 0;i++){
+		if(total == 10*i){
+			
+		}	
+	}
+%>
+
+	<h2>페이지 누적 요청 수 : <%=total %></h2>
+
+<%
+	out.print(++total);
+%>
+</body>
+</html>
