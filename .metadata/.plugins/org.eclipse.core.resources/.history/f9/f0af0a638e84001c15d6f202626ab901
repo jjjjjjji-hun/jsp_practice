@@ -1,0 +1,21 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<%!
+	int randomNum() {
+		int result = (int)(Math.random() * 45) + 1;
+		return result;
+}
+%>
+<h2>로또번호 생성 결과</h2>
+<p>
+	이번주 로또는 이 번호다!!
+	<%= randomNum() randomNum() randomNum() randomNum() randomNum() randomNum() %>
+</body>
+</html>
