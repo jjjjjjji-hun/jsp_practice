@@ -17,7 +17,7 @@
 	}
 	String randomColor(){
 		// 33%확률로 빨강, 노랑, 파랑
-		double randomNum = (int)(Math.random() * 3);
+		int randomNum = (int)(Math.random() * 3);
 		String result2;
 		if(randomNum == 0){
 			result2 = "빨강";
