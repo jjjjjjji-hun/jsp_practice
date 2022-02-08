@@ -1,0 +1,32 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%
+	Cookie[] cookies = request.getCookies();
+	String autoLogin = null;
+	String id = null;
+	if(cookies != null){
+		for(Cookie cookie : cookies){
+		autoLogin = cookie.getName();
+			if(autoLogin.equals("auto_login")){
+			// cookie_welcome.jsp 페이지로 리다이렉트
+			response.sendRedirect("session_welcome.jsp");
+			}
+		}
+	}
+%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>세션을 활용한 로그인</title>
+</head>
+<body>
+	<form action="session_login_check.jsp" method="post">
+	아이디 : <input type="text" name="id"/><br/>
+	비밀번호 : <input type="password" name="pw"/><br/>
+	닉네임 : <input type="text" name="nickname"/><br/>
+	자동로그인<input type="checkbox" name="auto" value="checked"/><br/>
+	제출 : <input type="submit"/>
+	</form>
+</body>
+</html>
