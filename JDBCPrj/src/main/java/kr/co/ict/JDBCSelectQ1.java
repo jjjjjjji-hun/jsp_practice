@@ -33,7 +33,8 @@ public class JDBCSelectQ1 {
 			System.out.println(rs1.getString(3));
 			System.out.println(rs1.getString(4));
 			System.out.println("---------");
-
+			
+			scan.close();
 		} catch(Exception e) {
 			e.printStackTrace();
 		  }
