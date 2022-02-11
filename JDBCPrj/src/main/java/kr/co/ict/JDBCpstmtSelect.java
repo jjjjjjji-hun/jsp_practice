@@ -42,6 +42,8 @@ public class JDBCpstmtSelect {
 				System.out.println(rs.getString(3));
 				System.out.println(rs.getString(4));
 			}
+			con.close();
+			pstmt.close();
 			scan.close();
 		}catch (Exception e) {
 			e.printStackTrace();

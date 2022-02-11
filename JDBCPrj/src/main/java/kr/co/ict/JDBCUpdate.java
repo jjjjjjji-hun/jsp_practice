@@ -42,6 +42,8 @@ public class JDBCUpdate {
 													"', upw = '" + uPw + 
 													"', uemail = '" + uEmail +
 													"' WHERE uid = '" + uId + "'");
+			con.close();
+			stmt.close();
 			scan.close();
 		}catch (Exception e) {
 			e.printStackTrace();

@@ -46,6 +46,8 @@ public class JDBCInsert {
 			stmt.executeUpdate("INSERT INTO userinfo VALUES ('" + uName + "', '" + uId + 
 								"', '" + uPw + "', '" + uEmail + "')");
 			
+			con2.close();
+			stmt.close();
 			scan.close();
 		} catch(Exception e) {
 			e.printStackTrace();

@@ -37,6 +37,8 @@ public class JDBCDelete {
 			// 쿼리문 발송
 			stmt.executeUpdate("DELETE FROM userinfo WHERE uid = '" + uId + "'");
 			
+			con.close();
+			stmt.close();
 			scan.close();
 		}catch(Exception e) {
 			e.printStackTrace();
