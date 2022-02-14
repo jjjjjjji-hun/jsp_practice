@@ -18,7 +18,7 @@
 	// 위의 사용자가 입력한 데이터를 토대로
 	// 스트립트릿 내부에서 DB연동을 한 다음 INSERT 구문을 실행하도록 만들면 회원가입 절차 구현 가능
 	String dbType = "com.mysql.cj.jdbc.Driver";
-	String dbUrl = "jdbc:mysql://localhost:3306/prac1";
+	String dbUrl = "jdbc:mysql://localhost:3306/jdbcprac1";
 	String dbId = "root";
 	String dbPw = "mysql";
 	
@@ -29,9 +29,9 @@
 		String sql = "INSERT INTO userinfo VALUES (?, ?, ?, ?)";
 		PreparedStatement pstmt = con.prepareStatement(sql);
 		
-		pstmt.setString(1, fId);
-		pstmt.setString(2, fPw);
-		pstmt.setString(3, fName);
+		pstmt.setString(1, fName);
+		pstmt.setString(2, fId);
+		pstmt.setString(3, fPw);
 		pstmt.setString(4, fEmail);
 		
 		pstmt.executeUpdate();
@@ -53,5 +53,6 @@
 </head>
 <body>
 	<%=fId %>님 환영합니다.
+	<a href="login_form.jsp">로그인창으로 이동하기</a>
 </body>
 </html>

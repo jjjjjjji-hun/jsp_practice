@@ -5,12 +5,12 @@
 	// 폼에서 보낸 아이디 비밀번호를 받아서 변수에 저장해주시고 콘솔에 확인도 해주세요.
 	String fId = request.getParameter("fid");
 	String fPw = request.getParameter("fpw");
-	System.out.println(fId);
-	System.out.println(fPw);
+	System.out.println("폼에서 날린 아이디 : " + fId);
+	System.out.println("폼에서 날린 비밀번호 : " + fPw);
 	
 	// DB 연결을 위한 변수선언
 	String dbType = "com.mysql.cj.jdbc.Driver";
-	String dbUrl = "jdbc:mysql://localhost:3306/prac1";
+	String dbUrl = "jdbc:mysql://localhost:3306/jdbcprac1";
 	String dbId = "root";
 	String dbPw = "mysql";
 	
@@ -28,13 +28,25 @@
 		//     DB에 적재되어있던 비밀번호를 마저 사용자 입력 비밀번호와 비교해 둘 다 일치하면 세션 발급
 		//     그렇지 않다면 로그인에 실패했습니다. 메세지가 뜨도록 처리
 		if(rs.next()){
-			if(fId.equals("fid") && fPw.equals("fpw")){
-				session.setAttribute("session_id", fId);
+			String uId = rs.getString("uid");// userinfo 테이블 내부의 아이디
+			String uPw = rs.getString("uPw");// userinfo 테이블 내부의 비밀번호
+			System.out.println("DB내 유저 아이디 : " + uId);
+			System.out.println("DB내 유저 비밀번호 : " + uPw);
+			// 폼에서 받아온 아이디와 테이블 내부 아이디, 폼에서 받아온 비밀번호와 테이블 내부 비밀번호 체크
+			if(fId.equals(uId) && fPw.equals(uPw)){
+				// 로그인시 세션을 발급해줍니다.
+				session.setAttribute("session_id", uId);
+				session.setAttribute("session_pw", uPw);
+				session.setMaxInactiveInterval(10);
+				// 로그인 성공 후 웰컴페이지로 보내주기
+				response.sendRedirect("login_welcome.jsp");
+			}else{
+				out.println("<h1>비밀번호가 틀렸습니다. 다시 확인해주세요.</h1>");
 			}
+		}else{
+			out.println("<h1>아이디가 없습니다. 입력 아이디를 확인해주세요.</h1>");
 		}
-		// 5. 만약 웰컴페이지도 만들 여력이 되신다면
-		//    가입 이후 리다이렉트로 넘겨서
-		//    이름(아이디) 님 로그인을 환영합니다. 라는 문장이 뜨는 login_welcome.jsp까지 구현해주세요.
+		
 		con.close();
 		pstmt.close();
 	}catch(Exception e){
