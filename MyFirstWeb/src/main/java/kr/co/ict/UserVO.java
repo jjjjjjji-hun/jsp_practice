@@ -43,6 +43,7 @@ public class UserVO {
 	}
 	
 	// 3. (선택)toString을 만들어주세요.
+	// toString은 콘솔이나 화면에 UserVO를 찍었을때 주소 대신 내부 데이터가 나오도록 해 줍니다.
 	@Override
 	public String toString() {
 		return "UserVO [uName=" + uName + ", uId=" + uId + ", uPw=" + uPw + ", uEmail=" + uEmail + "]";

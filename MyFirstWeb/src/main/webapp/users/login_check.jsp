@@ -5,8 +5,8 @@
 	// 폼에서 보낸 아이디 비밀번호를 받아서 변수에 저장해주시고 콘솔에 확인도 해주세요.
 	String fId = request.getParameter("fid");
 	String fPw = request.getParameter("fpw");
-	System.out.println("폼에서 날린 아이디 : " + fId);
-	System.out.println("폼에서 날린 비밀번호 : " + fPw);
+	//System.out.println("폼에서 날린 아이디 : " + fId);
+	//System.out.println("폼에서 날린 비밀번호 : " + fPw);
 	
 	// DB 연결을 위한 변수선언
 	String dbType = "com.mysql.cj.jdbc.Driver";
@@ -30,8 +30,8 @@
 		if(rs.next()){
 			String uId = rs.getString("uid");// userinfo 테이블 내부의 아이디
 			String uPw = rs.getString("uPw");// userinfo 테이블 내부의 비밀번호
-			System.out.println("DB내 유저 아이디 : " + uId);
-			System.out.println("DB내 유저 비밀번호 : " + uPw);
+			//System.out.println("DB내 유저 아이디 : " + uId);
+			//System.out.println("DB내 유저 비밀번호 : " + uPw);
 			// 폼에서 받아온 아이디와 테이블 내부 아이디, 폼에서 받아온 비밀번호와 테이블 내부 비밀번호 체크
 			if(fId.equals(uId) && fPw.equals(uPw)){
 				// 로그인시 세션을 발급해줍니다.

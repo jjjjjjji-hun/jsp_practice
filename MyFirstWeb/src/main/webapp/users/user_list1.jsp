@@ -44,9 +44,9 @@
 		
 		// 문제는 현재 이 구문에서는 rs.next()가 rs.close()를 한 이후에 배치되어 있어서
 		// 에러가 발생합니다.
-		con.close();
-		pstmt.close();
-		rs.close();
+		//con.close();
+		//pstmt.close();
+		//rs.close();
 	}
 %>
 <!DOCTYPE html>
