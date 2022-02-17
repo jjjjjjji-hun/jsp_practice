@@ -27,7 +27,7 @@ public class UserDAO {
 	}
 	
 	// user_list2.jsp의 코드 로직을 대체해보겠습니다.
-	// user_lisr2.jsp에서 전체 유저 목록을 필요로 하기 때문에
+	// user_list2.jsp에서 전체 유저 목록을 필요로 하기 때문에
 	// 실행 결과로 List<UserVO>를 리턴해줘야 합니다.
 	// 역시 SELECT구문을 실행할 때에는 리턴자료가 필요하고
 	// INSERT, DELETE, UPDATE구문을 실행할 때는 리턴자료가 void입니다.
@@ -81,8 +81,7 @@ public class UserDAO {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		
-		
+		UserVO user = null;
 		try {
 			con = DriverManager.getConnection(dbUrl, dbId, dbPw);
 			String sql = "SELECT * FROM userinfo WHERE uid = ?";
@@ -90,8 +89,12 @@ public class UserDAO {
 			pstmt.setString(1, seId);
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
-				String tName = rs.getString("uname");
-				String tEmail = rs.getString("uemail");
+				String uName = rs.getString("uname");
+				String uId = rs.getString("uid");
+				String uPw = rs.getString("upw");
+				String uEmail = rs.getString("uemail");
+				user = new UserVO(uName, uId, uPw, uEmail);
+				
 			}
 			
 		}catch(Exception e) {
@@ -105,6 +108,6 @@ public class UserDAO {
 				se.printStackTrace();
 			}
 		}
-		return null; // DB에서 UserVO에 데이터를 받아주신 다음 null 대신 받아온 데이터를 리턴하세요.
+		return user; // DB에서 UserVO에 데이터를 받아주신 다음 null 대신 받아온 데이터를 리턴하세요.
 	}
 }
