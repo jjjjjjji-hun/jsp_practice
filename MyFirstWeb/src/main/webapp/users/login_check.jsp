@@ -1,3 +1,5 @@
+<%@page import="kr.co.ict.UserVO"%>
+<%@page import="kr.co.ict.UserDAO"%>
 <%@page import="java.sql.*"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -7,7 +9,7 @@
 	String fPw = request.getParameter("fpw");
 	//System.out.println("폼에서 날린 아이디 : " + fId);
 	//System.out.println("폼에서 날린 비밀번호 : " + fPw);
-	
+	/*
 	// DB 연결을 위한 변수선언
 	String dbType = "com.mysql.cj.jdbc.Driver";
 	String dbUrl = "jdbc:mysql://localhost:3306/jdbcprac1";
@@ -24,12 +26,20 @@
 		pstmt.setString(1, fId);
 		// 3. 쿼리문 실행 결과 ResultSet에 받기
 		ResultSet rs = pstmt.executeQuery();
+		
+		*/
+		// 1~3번까지 로직을 DAO의 getUserData를 사용해 수행하도록 변경해주세요.
+		UserDAO dao = new UserDAO();
+		UserVO user = dao.getUserData(fId);
 		// 4. 사용자 입력 id를 기준으로 들어온 데이터가 있다면, (fId.equals(DB내에 저장된 ID)로 검사 가능)
 		//     DB에 적재되어있던 비밀번호를 마저 사용자 입력 비밀번호와 비교해 둘 다 일치하면 세션 발급
 		//     그렇지 않다면 로그인에 실패했습니다. 메세지가 뜨도록 처리
-		if(rs.next()){
-			String uId = rs.getString("uid");// userinfo 테이블 내부의 아이디
-			String uPw = rs.getString("uPw");// userinfo 테이블 내부의 비밀번호
+		
+		if(user != null){
+			//String uId = rs.getString("uid");// userinfo 테이블 내부의 아이디
+			//String uPw = rs.getString("uPw");// userinfo 테이블 내부의 비밀번호
+			String uId = user.getuId();
+			String uPw = user.getuPw();
 			//System.out.println("DB내 유저 아이디 : " + uId);
 			//System.out.println("DB내 유저 비밀번호 : " + uPw);
 			// 폼에서 받아온 아이디와 테이블 내부 아이디, 폼에서 받아온 비밀번호와 테이블 내부 비밀번호 체크
@@ -47,11 +57,11 @@
 			out.println("<h1>아이디가 없습니다. 입력 아이디를 확인해주세요.</h1>");
 		}
 		
-		con.close();
+		/*con.close();
 		pstmt.close();
 	}catch(Exception e){
 		e.printStackTrace();
-	}
+	}*/
 %>
 <!DOCTYPE html>
 <html>

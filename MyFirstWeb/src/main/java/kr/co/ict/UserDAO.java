@@ -93,8 +93,7 @@ public class UserDAO {
 				String uId = rs.getString("uid");
 				String uPw = rs.getString("upw");
 				String uEmail = rs.getString("uemail");
-				user = new UserVO(uName, uId, uPw, uEmail);
-				
+				user = new UserVO(uName, uId, uPw, uEmail);		
 			}
 			
 		}catch(Exception e) {
