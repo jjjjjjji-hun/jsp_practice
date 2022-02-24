@@ -1,3 +1,4 @@
+<%@page import="kr.co.ict.UserDAO"%>
 <%@page import="java.sql.*"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -13,7 +14,7 @@
 	String seId = (String)session.getAttribute("session_id");
 	String sePw = (String)session.getAttribute("session_pw");
 	
-	// 3. DB접속정보 변수로 관리
+	/*// 3. DB접속정보 변수로 관리
 	String dbType = "com.mysql.cj.jdbc.Driver";
 	String dbUrl = "jdbc:mysql://localhost:3306/jdbcprac1";
 	String dbId = "root";
@@ -44,8 +45,11 @@
 		e.printStackTrace();
 	}finally{
 		
-	}
+	}*/
 	
+	// 위쪽 3~6 코드를 DAO로 대체해서 처리해주세요.
+	UserDAO dao = new UserDAO();
+	dao.updateCheck(seId, fPw, fName, fEmail);
 	// 7. body태그에 XXX 회원의 정보가 수정되었습니다. 라고 안내해주고
 	// welcome페이지로 돌아갈 수 있는 링크 넣어주기.
 %>
