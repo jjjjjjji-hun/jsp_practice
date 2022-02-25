@@ -22,7 +22,7 @@
 		/*
 		out.println("이름 : " + name + "<br/>");
 		out.println("나이 : " + age + "세<br/>");
-		out.println(areaCircle(3));
+		out.println(areaCircle(5));
 		*/
 	%>
 	이름 : <%= name %><br/>

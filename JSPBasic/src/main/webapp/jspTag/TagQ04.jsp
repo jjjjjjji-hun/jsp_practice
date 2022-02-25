@@ -1,4 +1,3 @@
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -20,8 +19,7 @@ celcius라는 함수는 오늘의 섭씨 온도로 초기화시켜주세요.
 스크립트릿을 이용해서 celcius를 파라미터로 넘겨서 CtoF 함수를 호출해주세요.
 함수를 호출한 결과를 out.println() 으로 화면에 표출시켜주시면 됩니다.
 화씨 -> 섭씨 공식
-(화씨 온도 - 32) / 1.8 = 섭씨 온도
- --%>
+(화씨 온도 - 32) / 1.8 = 섭씨 온도--%>
  <%!
  double celcius = -2.0;
  double CtoF(double celcius){
@@ -29,7 +27,7 @@ celcius라는 함수는 오늘의 섭씨 온도로 초기화시켜주세요.
  }
  %>
  <%--화씨 온도 = (섭씨 온도 + 32) * 1.8 --%>
- <h1>오늘 현재 방학동 온도</h1><br/>
+ <h1>오늘 현재 서울 온도</h1><br/>
  <p>
  	섭씨 온도 : <%=celcius %><br>
  	화씨 온도 : <%=CtoF(celcius) %>

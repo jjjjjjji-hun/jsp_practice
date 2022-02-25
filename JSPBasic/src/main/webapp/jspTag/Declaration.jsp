@@ -20,6 +20,7 @@
 	<% // 스트립트릿은 자바의 main메서드처럼 작동이 되기 때문에 선언을 하기 위해서는
 	   // 위와 같이 선언부에서 먼저 선언을 해줘야 합니다.
 		int result = add(10, 5);
+		out.print(str + "<br/>");
 		out.println("10 + 5 = " + result + "<br/>");
 		out.println("16 + 4 = " + add(16, 4) + "<br/>");
 		out.print(result);
