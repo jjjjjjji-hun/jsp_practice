@@ -29,7 +29,9 @@
 		
 		*/
 		// 1~3번까지 로직을 DAO의 getUserData를 사용해 수행하도록 변경해주세요.
-		UserDAO dao = new UserDAO();
+		//UserDAO dao = new UserDAO();
+		// 싱글턴 패턴 처리
+		UserDAO dao = UserDAO.getInstance();
 		UserVO user = dao.getUserData(fId);
 		// 4. 사용자 입력 id를 기준으로 들어온 데이터가 있다면, (fId.equals(DB내에 저장된 ID)로 검사 가능)
 		//     DB에 적재되어있던 비밀번호를 마저 사용자 입력 비밀번호와 비교해 둘 다 일치하면 세션 발급
@@ -54,7 +56,8 @@
 				out.println("<h1>비밀번호가 틀렸습니다. 다시 확인해주세요.</h1>");
 			}
 		}else{
-			out.println("<h1>아이디가 없습니다. 입력 아이디를 확인해주세요.</h1>");
+			out.println("<h1>아이디가 없습니다. 입력 아이디를 확인해주세요.</h1>" + 
+						"<br/>" + "<a href='login_form.jsp'>로그인창으로 돌아가기</a>");
 		}
 		
 		/*con.close();
