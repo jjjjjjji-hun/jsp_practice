@@ -38,5 +38,4 @@
     	maxActive = "300"
     	maxWait = "1000"    
     />
-    
 </Context>

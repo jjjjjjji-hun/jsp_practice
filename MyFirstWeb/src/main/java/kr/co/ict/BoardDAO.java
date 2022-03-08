@@ -95,6 +95,7 @@ public class BoardDAO {
 		
 		return boardList;
 	}
+	
 	// insertBoard 내부 쿼리문 실행시 필요한 3개 요소인 글제목, 본문, 글쓴이를 입력해야만 실행할수 있게 설계합니다.
 	public void insertBoard(String title, String content, String writer) {
 		Connection con = null;
@@ -124,5 +125,45 @@ public class BoardDAO {
 				se.printStackTrace();
 			}
 		}
+	}
+	
+	public BoardVO getBoardDetail(int board_num) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		BoardVO board = null;
+		try {
+			con = ds.getConnection();
+			
+			String sql = "SELECT * FROM boardinfo WHERE board_num = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, board_num);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				int boardNum = rs.getInt("board_num");
+				String title = rs.getString("title");
+				String content = rs.getString("content");
+				String writer = rs.getString("writer");
+				Date bDate = rs.getDate("bDate");
+				Date mDate = rs.getDate("mDate");				
+				int hit = rs.getInt("hit");
+				
+				board = new BoardVO(boardNum, title, content, writer, bDate, mDate, hit);
+				
+			}
+			}catch(Exception e) {
+				e.printStackTrace();
+			}finally {
+				try {
+					con.close();
+					pstmt.close();
+					rs.close();
+			}catch(SQLException se) {
+				se.printStackTrace();
+				}
+			}
+	
+		return board;
 	}
 }

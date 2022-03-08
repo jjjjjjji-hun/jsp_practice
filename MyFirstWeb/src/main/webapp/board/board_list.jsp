@@ -40,7 +40,7 @@
 		<c:forEach var="board" items="${boardList}">
 			<tr>
 				<td>${board.board_num }</td>
-				<td>${board.title }</td>
+				<td><a href="http://localhost:8181/MyFirstWeb/boarddetail?board_num=${board.board_num }">${board.title }</a></td>
 				<td>${board.writer }</td>
 				<td>${board.bDate }</td>
 				<td>${board.mDate }</td>
