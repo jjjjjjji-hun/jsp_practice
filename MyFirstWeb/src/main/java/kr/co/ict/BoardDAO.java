@@ -166,4 +166,56 @@ public class BoardDAO {
 	
 		return board;
 	}
+	
+	public void deleteBoard(int board_num) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		
+		try {
+			con = ds.getConnection();
+			
+			String sql = "DELETE FROM boardinfo WHERE board_num = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, board_num);
+			
+			pstmt.executeUpdate();
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				con.close();
+				pstmt.close();
+			}catch(SQLException se) {
+				se.printStackTrace();
+			}
+		}
+	}
+	
+	public void updateBoard(String title, String content, int bNum) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		
+		try {
+			// 게시글 수정으로 mdate=now()를 사용하면 날짜도 수정 가능
+			con = ds.getConnection();
+			String sql = "UPDATE boardinfo SET title = ?, content = ?, mdate=now() WHERE board_num = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, title);
+			pstmt.setString(2, content);
+			pstmt.setInt(3, bNum);
+
+			
+			pstmt.executeUpdate();
+		}catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				con.close();
+				pstmt.close();
+			}catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+	}
 }

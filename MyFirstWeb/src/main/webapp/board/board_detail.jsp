@@ -36,7 +36,17 @@
 	조회수 : ${Board.hit}<br/>
 	쓴날짜 : ${Board.bDate }"
 	마지막 수정날짜 : ${Board.mDate }<br/>
-	본문 : <textarea rows="15" cols="30">${Board.content}</textarea>
+	본문 : <textarea rows="15" cols="30" readonly>${Board.content}</textarea>
 	<a href="http://localhost:8181/MyFirstWeb/boardList">목록으로</a>
+	<form action="http://localhost:8181/MyFirstWeb/deleteBoard" method="post">
+		<!-- 내부를 조금 고쳐서 글 번호를 넘기도록 만들어보세요.
+		해당 서블릿에서 글 번호를 콘솔에 찍게도 만들어주세요. -->
+		<input type="hidden" value="${Board.board_num }" name="board_num"/>
+		<input type="submit" value="삭제하기"/>
+	</form>
+	<form action="http://localhost:8181/MyFirstWeb/updateBoard" method="post">
+		<input type="hidden" value="${Board.board_num }" name="board_num"/>
+		<input type="submit" value="수정하기"/>
+	</form>
 </body>
 </html>

@@ -17,5 +17,9 @@
     <fullyQualifiedTypeName name="java.util.List"/>
     <fullyQualifiedTypeName name="kr.co.ict.BoardDAO"/>
     <fullyQualifiedTypeName name="kr.co.ict.BoardVO"/>
+<<<<<<< HEAD
     <fullyQualifiedTypeName name="javax.servlet.RequestDispatcher"/>
+=======
+    <fullyQualifiedTypeName name="kr.co.ict.BoardDAO"/>
+>>>>>>> 491d688240698da3a088877275489a36ae3433d1
 </qualifiedTypeNameHistroy>
