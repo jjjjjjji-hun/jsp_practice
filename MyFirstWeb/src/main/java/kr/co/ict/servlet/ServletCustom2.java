@@ -1,51 +1,47 @@
-package kr.co.ictservlet;
+package kr.co.ict.servlet;
 
 import java.io.IOException;
-import java.util.List;
-
-import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import kr.co.ict.BoardDAO;
-import kr.co.ict.BoardVO;
-
 /**
- * Servlet implementation class BoardServlet
+ * Servlet implementation class ServletCustom2
  */
-@WebServlet("/boardList")
-public class BoardListServlet extends HttpServlet {
+@WebServlet({ "/cs2", "/secondAddress" })
+public class ServletCustom2 extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public BoardListServlet() {
+    public ServletCustom2() {
         super();
         // TODO Auto-generated constructor stub
     }
 
 	/**
+	 * @see Servlet#init(ServletConfig)
+	 */
+	public void init(ServletConfig config) throws ServletException {
+		System.out.println("두 주소로 모두 접속 가능(init)");
+	}
+
+	/**
+	 * @see Servlet#destroy()
+	 */
+	public void destroy() {
+		// TODO Auto-generated method stub
+	}
+
+	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// 1. 접속시 BoardDAO 생성
-		BoardDAO dao = BoardDAO.getInstance();
-		
-		// 2. BoardDAO의 getALLBoardList() 호출해 전체 게시글 정보 받아오기
-		List<BoardVO> boardList = dao.getAllBoardList();
-		
-		// 3. request.setAttribute로 바인딩하기
-		request.setAttribute("boardList", boardList);
-		
-		// 4. /board/boardlist.jsp로 포워딩하기
-		// 포워딩 후 el로 바인딩한 자료를 화면에 뿌려보세요.
-		RequestDispatcher dp = request.getRequestDispatcher("/board/board_list.jsp");
-		dp.forward(request, response);
-		
+		System.out.println("두 주소로 모두 접속 가능(doGet)");
 	}
 
 	/**

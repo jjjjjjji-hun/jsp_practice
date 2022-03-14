@@ -1,4 +1,4 @@
-package kr.co.ictservlet;
+package kr.co.ict.servlet;
 
 import java.io.IOException;
 import javax.servlet.ServletConfig;
@@ -9,16 +9,17 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class ServletCustom2
+ * Servlet implementation class servletbasic
  */
-@WebServlet({ "/cs2", "/secondAddress" })
-public class ServletCustom2 extends HttpServlet {
+// /apple로 접속했을때 해당 서블릿이 실행됨
+@WebServlet("/apple")
+public class servletbasic extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ServletCustom2() {
+    public servletbasic() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -27,7 +28,7 @@ public class ServletCustom2 extends HttpServlet {
 	 * @see Servlet#init(ServletConfig)
 	 */
 	public void init(ServletConfig config) throws ServletException {
-		System.out.println("두 주소로 모두 접속 가능(init)");
+		System.out.println("/apple 최초 접속");
 	}
 
 	/**
@@ -41,7 +42,8 @@ public class ServletCustom2 extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("두 주소로 모두 접속 가능(doGet)");
+		// TODO Auto-generated method stub
+		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**

@@ -192,18 +192,18 @@ public class BoardDAO {
 		}
 	}
 	
-	public void updateBoard(int board_num, String title, String content) {
+	public void updateBoard(String title, String content, int bNum) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		
 		try {
-			//con = DriverManager.getConnection(dbUrl, dbId, dbPw);
+			// 게시글 수정으로 mdate=now()를 사용하면 날짜도 수정 가능
 			con = ds.getConnection();
-			String sql = "UPDATE boardinfo SET title = ?, content = ? WHERE board_num = ?";
+			String sql = "UPDATE boardinfo SET title = ?, content = ?, mdate=now() WHERE board_num = ?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, title);
 			pstmt.setString(2, content);
-			pstmt.setInt(3, board_num);
+			pstmt.setInt(3, bNum);
 
 			
 			pstmt.executeUpdate();
