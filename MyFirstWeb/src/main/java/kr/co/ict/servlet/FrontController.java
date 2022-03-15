@@ -9,8 +9,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import kr.co.ict.servlet.service.BoardDeleteService;
 import kr.co.ict.servlet.service.BoardDetailService;
+import kr.co.ict.servlet.service.BoardInsertService;
 import kr.co.ict.servlet.service.BoardListService;
+import kr.co.ict.servlet.service.BoardUpdateFormService;
+import kr.co.ict.servlet.service.BoardUpdateService;
 import kr.co.ict.servlet.service.IBoardService;
 
 /**
@@ -56,14 +60,32 @@ public class FrontController extends HttpServlet {
 		IBoardService sv = null;
 		System.out.println(uri);
 		
-		if(uri.equals("/MyFirstWeb/boardlist.do")) {
+		if(uri.equals("/MyFirstWeb/boardList.do")) {
 			sv = new BoardListService(); // 다형성에 의해 IBoardService를 구현한 모든 타입을 sv에 저장 가능
 			sv.execute(request, response);// BoardListService의 execute는 게시글 목록을 가져옴
 			ui = "/board/board_list.jsp";// 포워딩 주소를 ui에 저장함
-		}else if(uri.equals("/MyFirstWeb/boarddetail.do")) {
+		}else if(uri.equals("/MyFirstWeb/boardDetail.do")) {
 			sv = new BoardDetailService();
 			sv.execute(request, response);
 			ui = "/board/board_detail.jsp";
+		}else if(uri.equals("/MyFirstWeb/insertForm.do")) {
+			ui = "/board/board_form.jsp"; 
+		}else if(uri.equals("/MyFirstWeb/boardInsert.do")) {
+			sv = new BoardInsertService();
+			sv.execute(request, response);
+			ui = "/boardList.do";
+		}else if(uri.equals("/MyFirstWeb/boardDelete.do")) {
+			sv = new BoardDeleteService();
+			sv.execute(request, response);
+			ui = "/boardList.do";
+		}else if(uri.equals("/MyFirstWeb/boardUpdateForm.do")) {
+			sv = new BoardUpdateFormService();
+			sv.execute(request, response);
+			ui = "/board/boardUpdateForm.jsp";
+		}else if(uri.equals("/MyFirstWeb/boardUpdate.do")) {
+			sv = new BoardUpdateService();
+			sv.execute(request, response);
+			ui = "/boardDetail.do?board_num=" + request.getParameter("board_num");
 		}else {// 그러면 정해진 주소 이외의 주소로 접속했을때 메인페이지로 보내주는 포워딩 구문을 작성해보세요.
 			ui = "/";
 		}

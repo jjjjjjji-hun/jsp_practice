@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form action="http://localhost:8181/MyFirstWeb/boardUpdate" method="post">
+	<form action="http://localhost:8181/MyFirstWeb/boardUpdate.do" method="post">
 		<h1>${Board.board_num }번 글 상세페이지</h1>
 		<input type="hidden" name="board_num" value="${Board.board_num }"/>
 		글제목 : <input type="text" name="title" value="${Board.title }"/>

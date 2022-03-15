@@ -40,7 +40,7 @@ public class UpdateBoardServlet extends HttpServlet {
 		// update 메서드 호출
 		dao.updateBoard(title, content, bNum);
 		// 리다이렉트
-		response.sendRedirect("http://localhost:8181/MyFirstWeb/boarddetail?board_num=" + bNum);
+		response.sendRedirect("http://localhost:8181/MyFirstWeb/boardDetail.do?board_num=" + bNum);
 	}
 
 }
