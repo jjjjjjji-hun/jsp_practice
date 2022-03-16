@@ -12,9 +12,9 @@
 	name 속성까지 맞춰주시고, submit버튼까지 함께 작성해주세요. -->
 	<h1>회원 가입 페이지</h1>
 	<form action ="join_check.jsp" method="post">
-	아이디 : <input type="text" name="fid" required/><br/>
-	비밀번호 : <input type="password" name="fpw" required/><br/>
 	이름 : <input type="text" name="fname" required/><br/>
+	아이디 : <input type="password" name="fid" required/><br/>
+	비밀번호 : <input type="text" name="fpw" required/><br/>
 	이메일 : <input type="email" name="femail"/><br/>
 	<input type="submit" value="회원가입"/>&nbsp;&nbsp;&nbsp;
 	<input type="reset" value="초기화"/>

@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import kr.co.ict.servlet.service.BoardDeleteService;
 import kr.co.ict.servlet.service.BoardDetailService;
+import kr.co.ict.servlet.service.BoardInsertFormService;
 import kr.co.ict.servlet.service.BoardInsertService;
 import kr.co.ict.servlet.service.BoardListService;
 import kr.co.ict.servlet.service.BoardUpdateFormService;
@@ -69,6 +70,8 @@ public class FrontController extends HttpServlet {
 			sv.execute(request, response);
 			ui = "/board/board_detail.jsp";
 		}else if(uri.equals("/MyFirstWeb/insertForm.do")) {
+			sv = new BoardInsertFormService();
+			sv.execute(request, response);
 			ui = "/board/board_form.jsp"; 
 		}else if(uri.equals("/MyFirstWeb/boardInsert.do")) {
 			sv = new BoardInsertService();

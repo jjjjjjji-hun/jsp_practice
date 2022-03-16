@@ -48,7 +48,7 @@
 	//UserDAO dao = new UserDAO();
 	// 싱글턴 패턴 처리
 	UserDAO dao = UserDAO.getInstance();
-	dao.insertUser(fId, fPw, fName, fEmail);
+	dao.insertUser(fName, fId, fPw, fEmail);
 	
 %>
 <!DOCTYPE html>

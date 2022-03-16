@@ -219,9 +219,9 @@ public class UserDAO {
 			con = ds.getConnection();
 			String sql = "INSERT INTO userinfo VALUES (?, ?, ?, ?)";
 			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, uId);
-			pstmt.setString(2, uPw);
-			pstmt.setString(3, uName);
+			pstmt.setString(1, uName);
+			pstmt.setString(2, uId);
+			pstmt.setString(3, uPw);
 			pstmt.setString(4, uEmail);
 			
 			pstmt.executeUpdate();
