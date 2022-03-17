@@ -132,6 +132,7 @@ public class BoardDAO {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		BoardVO board = null;
+		upHit(board_num);
 		try {
 			con = ds.getConnection();
 			
@@ -217,5 +218,35 @@ public class BoardDAO {
 				e.printStackTrace();
 			}
 		}
+	}
+	
+	// 서비스가 아닌 getBoardDetail 실행 시 자동으로 같이 실행되도록 처리하겠습니다.
+	// 글 제목을 클릭할때마다 조회수를 상승시키는 메서드
+	private void upHit(int BId) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		
+		try {
+			// 게시글 수정으로 mdate=now()를 사용하면 날짜도 수정 가능
+			con = ds.getConnection();
+			String sql = "UPDATE boardinfo SET hit = (hit+1) WHERE board_num = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, BId);
+
+
+			
+			pstmt.executeUpdate();
+		}catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				con.close();
+				pstmt.close();
+			}catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
+		System.out.println("현재 조회된 글 번호 : " + BId);
 	}
 }

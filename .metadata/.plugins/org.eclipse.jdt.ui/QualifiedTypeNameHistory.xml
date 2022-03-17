@@ -6,10 +6,13 @@
     <fullyQualifiedTypeName name="kr.co.ict.servlet.service.IBoardServlet"/>
     <fullyQualifiedTypeName name="kr.co.ict.servlet.service.IBoardService"/>
     <fullyQualifiedTypeName name="kr.co.ict.servlet.service.BoardListService"/>
-    <fullyQualifiedTypeName name="javax.servlet.RequestDispatcher"/>
     <fullyQualifiedTypeName name="kr.co.ict.servlet.service.BoardDetailService"/>
     <fullyQualifiedTypeName name="kr.co.ict.servlet.service.BoardInsertService"/>
     <fullyQualifiedTypeName name="kr.co.ict.servlet.service.BoardDeleteService"/>
     <fullyQualifiedTypeName name="kr.co.ict.servlet.service.BoardUpdateFormService"/>
     <fullyQualifiedTypeName name="kr.co.ict.servlet.service.BoardUpdateService"/>
+    <fullyQualifiedTypeName name="javax.servlet.http.HttpSession"/>
+    <fullyQualifiedTypeName name="kr.co.ict.servlet.service.BoardInsertFormService"/>
+    <fullyQualifiedTypeName name="java.io.IOException"/>
+    <fullyQualifiedTypeName name="javax.servlet.RequestDispatcher"/>
 </qualifiedTypeNameHistroy>

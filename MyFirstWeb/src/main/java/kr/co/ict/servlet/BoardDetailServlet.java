@@ -34,7 +34,6 @@ public class BoardDetailServlet extends HttpServlet {
 		// request.getParameter 를 이용해 글번호부터 가져옵니다.
 		// int 자료형으로 바꿔주세요.
 		int bNum = Integer.parseInt(request.getParameter("board_num"));
-		System.out.println(bNum);
 		// 다오 생성
 		BoardDAO dao = BoardDAO.getInstance();
 		// 한글
