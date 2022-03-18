@@ -49,8 +49,8 @@ public class BoardDAO {
 	// 3-2. 쿼리문을 boardinfo 테이블에서 데이터를 가져오도록 수정합니다.
 	
 	// 3-3. while문 내부에서 BoardDAO 세팅이 가능하도록 rs에서 데이터 가져오는 부분을 수정합니다.
-	
-	public List<BoardVO> getAllBoardList(){
+	// 페이징 처리를 위해 페이지 번호를 추가로 입력받습니다.
+	public List<BoardVO> getAllBoardList(int pageNum){
 		// try블럭 진입 전 Connection, PreparedStatement, ResultSet을 선언합니다.
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -61,9 +61,11 @@ public class BoardDAO {
 			//Connection, PreparedStatement, ResultSet을 선언합니다.
 			//con = DriverManager.getConnection(dbUrl, dbId, dbPw);
 			con = ds.getConnection();
+			int limitNum = ((pageNum-1) * 10);
 			
-			String sql = "SELECT * FROM boardinfo ORDER BY board_num DESC";
+			String sql = "SELECT * FROM boardinfo ORDER BY board_num DESC limit ?, 10";
 			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, limitNum);
 		
 			rs = pstmt.executeQuery();
 		
@@ -168,6 +170,46 @@ public class BoardDAO {
 		return board;
 	}
 	
+	public BoardVO getBoardDetail2(int board_num) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		BoardVO board = null;
+		try {
+			con = ds.getConnection();
+			
+			String sql = "SELECT * FROM boardinfo WHERE board_num = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, board_num);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				int boardNum = rs.getInt("board_num");
+				String title = rs.getString("title");
+				String content = rs.getString("content");
+				String writer = rs.getString("writer");
+				Date bDate = rs.getDate("bDate");
+				Date mDate = rs.getDate("mDate");				
+				int hit = rs.getInt("hit");
+				
+				board = new BoardVO(boardNum, title, content, writer, bDate, mDate, hit);
+				
+			}
+			}catch(Exception e) {
+				e.printStackTrace();
+			}finally {
+				try {
+					con.close();
+					pstmt.close();
+					rs.close();
+			}catch(SQLException se) {
+				se.printStackTrace();
+				}
+			}
+	
+		return board;
+	}
+	
 	public void deleteBoard(int board_num) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -222,7 +264,7 @@ public class BoardDAO {
 	
 	// 서비스가 아닌 getBoardDetail 실행 시 자동으로 같이 실행되도록 처리하겠습니다.
 	// 글 제목을 클릭할때마다 조회수를 상승시키는 메서드
-	private void upHit(int BId) {
+	private void upHit(int bId) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		
@@ -231,11 +273,10 @@ public class BoardDAO {
 			con = ds.getConnection();
 			String sql = "UPDATE boardinfo SET hit = (hit+1) WHERE board_num = ?";
 			pstmt = con.prepareStatement(sql);
-			pstmt.setInt(1, BId);
-
-
+			pstmt.setInt(1, bId);
 			
 			pstmt.executeUpdate();
+			
 		}catch (Exception e) {
 			e.printStackTrace();
 		}finally {
@@ -247,6 +288,6 @@ public class BoardDAO {
 			}
 		}
 		
-		System.out.println("현재 조회된 글 번호 : " + BId);
+		System.out.println("현재 조회된 글 번호 : " + bId);
 	}
 }

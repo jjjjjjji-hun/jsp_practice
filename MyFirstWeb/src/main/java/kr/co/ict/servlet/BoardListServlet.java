@@ -32,11 +32,24 @@ public class BoardListServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// 페이지 번호를 get방식으로 가져옵니다. 저장받아 주세요(?pageNum=번호 형식으로 받아옵니다.)
+				String strpNum = request.getParameter("pageNum");
+				int pNum = 0;
+				/*if(strpNum == null) {
+					pNum = 1;
+				}else {
+					 pNum = Integer.parseInt(request.getParameter("pageNum"));
+				}*/
+				try {
+					pNum=Integer.parseInt(strpNum);
+				}catch(Exception e) {
+					pNum = 1;
+				}
 		// 1. 접속시 BoardDAO 생성
 		BoardDAO dao = BoardDAO.getInstance();
 		
 		// 2. BoardDAO의 getALLBoardList() 호출해 전체 게시글 정보 받아오기
-		List<BoardVO> boardList = dao.getAllBoardList();
+		List<BoardVO> boardList = dao.getAllBoardList(pNum);
 		
 		// 3. request.setAttribute로 바인딩하기
 		request.setAttribute("boardList", boardList);

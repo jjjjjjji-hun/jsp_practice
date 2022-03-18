@@ -13,10 +13,10 @@
 </head>
 <body>
 
-	${boardList }
+	<!-- ${boardList }
 	<hr/>
-	<!-- 출력방법 : 인덱싱이나 c:forEach를 이용해서 하나하나 꺼내준 다음
-	.변수명을 적으면 출력됩니다. -->
+	출력방법 : 인덱싱이나 c:forEach를 이용해서 하나하나 꺼내준 다음
+	.변수명을 적으면 출력됩니다. 
 	0번째 요소 : ${boardList[0]}<br/>
 	1번째 요소 : ${boardList[1]}<br/>
 	2번째 요소 : ${boardList[2]}<br/>
@@ -24,7 +24,7 @@
 	현재 데이터 : ${boardList[0] }<br/>
 	글번호 : ${boardList[0].board_num }<br/>
 	글제목 : ${boardList[0].title }
-	<hr/>
+	<hr/> -->
 	<table class="table table-hover">
 		<thead>
 			<tr>
