@@ -62,8 +62,8 @@ public class BoardDAO {
 			//con = DriverManager.getConnection(dbUrl, dbId, dbPw);
 			con = ds.getConnection();
 			int limitNum = ((pageNum-1) * 10);
-			
-			String sql = "SELECT * FROM boardinfo ORDER BY board_num DESC limit ?, 10";
+			// LIMIT 뒤쪽 숫자가 페이지당 보여줄 글 개수이므로 DTO의 상수와 함께 고쳐야 함.
+			String sql = "SELECT * FROM boardinfo ORDER BY board_num DESC limit ?, 20";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, limitNum);
 		
@@ -289,5 +289,37 @@ public class BoardDAO {
 		}
 		
 		System.out.println("현재 조회된 글 번호 : " + bId);
+	}
+	
+	// 페이징 처리를 위해 글 전체 개수를 구해오겠습니다.
+	// 하단의 public int getPageNum()을 작성해주세요.
+	// 쿼리문은 SELECT COUNT(*) FROM boardinfo;
+	public int getPageNum() {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		int pageNum = 0;
+		try {
+			con = ds.getConnection();
+			
+			String sql = "SELECT COUNT(*) FROM boardinfo";
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				pageNum = rs.getInt(1);		
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				con.close();
+				pstmt.close();
+				rs.close();
+		}catch(SQLException se) {
+			se.printStackTrace();
+			}
+		}	
+		return pageNum;
 	}
 }

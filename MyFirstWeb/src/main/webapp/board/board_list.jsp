@@ -52,8 +52,10 @@
 		</tbody>
 		
 	</table>
+	${dto }
 	<c:if test="${sId ne null }">
 		<a href="http://localhost:8181/MyFirstWeb/insertForm.do"><button>글쓰기</button></a>
 	</c:if>
+	
 </body>
 </html>
